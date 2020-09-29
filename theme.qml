@@ -108,6 +108,18 @@ FocusScope {
         onFiltersRequested: filter.focus = true
         onLaunchRequested: launchGame()
     }
+    GameSupport {
+			id: gamesupport
+
+			anchors {
+				right: parent.right
+				rightMargin: 32
+				bottom: parent.bottom
+				bottomMargin: 32
+			}
+
+			game: gamegrid.currentGame
+    }
 
     FilterLayer {
         id: filter
