@@ -27,7 +27,8 @@ Item {
         id: main
         width: parent.width * 0.8
         height: parent.height
-        color: "#ff4035"
+        // DFOXpro INDIGO
+        color: "#4b0082"
     }
 
     Rectangle {

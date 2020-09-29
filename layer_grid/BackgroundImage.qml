@@ -23,7 +23,7 @@ Item {
 
     visible: game
 
-    readonly property double currentMaxOpacity: game && game.assets.background && 1.0 || 0.35
+    readonly property double currentMaxOpacity: game && game.assets.background && 1.0 || 0.50
     readonly property string currentSource: {
         if (!game)
             return "";
@@ -91,7 +91,8 @@ Item {
         end: Qt.point(width, 0)
         gradient: Gradient {
             GradientStop { position: 0.0; color: "#00000000" }
-            GradientStop { position: 0.5; color: "#cc000000" }
+            GradientStop { position: 0.5; color: "#00000000" }
+            GradientStop { position: 0.75; color: "#55000000" }
         }
     }
 }

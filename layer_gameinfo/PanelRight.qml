@@ -32,7 +32,7 @@ Item {
     // a small delay to avoid loading videos during scrolling
     Timer {
         id: videoDelay
-        interval: 300
+        interval: 3000
         onTriggered: {
             if (game && game.assets.videos.length > 0) {
                 for (var i = 0; i < game.assets.videos.length; i++)
@@ -151,10 +151,12 @@ Item {
         color: "#000"
         border { color: "#444"; width: 1 }
 
-        anchors.top: summary.bottom
+        // anchors.top: summary.bottom
         anchors.bottom: parent.bottom
 
         width: parent.width
+        height: parent.width*0.75
+
         radius: vpx(4)
 
         visible: (game && (game.assets.videos.length || game.assets.screenshots.length)) || false
