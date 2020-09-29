@@ -16,6 +16,7 @@
 
 
 import QtQuick 2.3
+import "../constants.js" as CONSTANTS
 
 
 FocusScope {
@@ -74,6 +75,7 @@ FocusScope {
             }
         }
 
+
         // For better visibility, box arts should be displayed in five columns if
         // the boxes are "tall", and four if they are "wide". There are two issues:
         //
@@ -108,7 +110,7 @@ FocusScope {
         displayMarginBeginning: anchors.topMargin
 
         highlight: Rectangle {
-            color: "#4b0082"
+            color: CONSTANTS.INDIGO
             width: grid.cellWidth
             height: grid.cellHeight
             scale: 1.20

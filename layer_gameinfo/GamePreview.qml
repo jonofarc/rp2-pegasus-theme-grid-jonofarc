@@ -55,7 +55,7 @@ FocusScope {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.left
-        opacity: 0.85
+        opacity: 0.50
 
         PegasusUtils.HorizontalSwipeArea {
             anchors.fill: parent

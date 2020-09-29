@@ -17,13 +17,14 @@
 
 import QtQuick 2.0
 import "qrc:/qmlutils" as PegasusUtils
+import "../constants.js" as CONSTANTS
 
 Rectangle {
     property alias model: platformPath.model
     property alias currentIndex: platformPath.currentIndex
     readonly property var currentCollection: model.get(currentIndex)
 
-    color: "#333"
+    color: CONSTANTS.BACKGROUND_LIGHT
     height: vpx(54)
 
     function next() {

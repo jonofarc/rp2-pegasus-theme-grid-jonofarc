@@ -167,7 +167,8 @@ Item {
             anchors { fill: parent; margins: 1 }
             fillMode: Image.PreserveAspectFit
 
-            source: (game && game.assets.screenshots.length && game.assets.screenshots[0]) || ""
+						//Also looks like there is a typo with tittle and tile, simply there is no titlescreen T.T
+            source: (game && game.assets.screenshot && game.assets.screenshot.replace('/media/screenshot', '/media/screenshottitle/')) || ""
             sourceSize { width: 512; height: 512 }
             asynchronous: true
         }
