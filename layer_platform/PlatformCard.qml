@@ -16,6 +16,7 @@
 
 
 import QtQuick 2.0
+import "../constants.js" as CONSTANTS
 
 Item {
     property alias platformShortName: label.text
@@ -27,8 +28,7 @@ Item {
         id: main
         width: parent.width * 0.8
         height: parent.height
-        // DFOXpro INDIGO
-        color: "#4b0082"
+        color: CONSTANTS.INDIGO
     }
 
     Rectangle {
@@ -44,7 +44,8 @@ Item {
             id: label
             width: 0
             text: ""
-            color: "#eee"
+            color: CONSTANTS.FOREGROUND_LIGHT
+						opacity: parent.parent.isOnTop ? 1.0 : 0.3
             anchors {
                 left: parent.left
                 bottom: parent.bottom
@@ -60,7 +61,8 @@ Item {
         }
 
         Rectangle {
-            color: "#faa"
+            color: CONSTANTS.FOREGROUND_LIGHT
+						opacity: parent.parent.isOnTop ? 1.0 : 0.3
             width: parent.width
             height: vpx(2)
             anchors.top: parent.bottom
@@ -86,7 +88,7 @@ Item {
 
         Text {
             text: platformShortName
-            color: "#eee"
+            color: CONSTANTS.FOREGROUND_LIGHT
             anchors.fill: parent
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
