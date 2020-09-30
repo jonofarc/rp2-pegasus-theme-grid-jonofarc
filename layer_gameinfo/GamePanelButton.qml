@@ -16,6 +16,7 @@
 
 
 import QtQuick 2.0
+import "../configs.js" as CONFIGS
 
 
 Rectangle {
@@ -26,7 +27,7 @@ Rectangle {
     property alias text: label.text
     property double lineHeight: 1.75
 
-    color: focus ? "#4ae" : (mouseArea.containsMouse ? "#999" : "#aaa")
+    color: focus ? CONFIGS.getMainColour(api) : (/*over*/mouseArea.containsMouse ? "#999" : CONFIGS.getBackgroundColour(api))
     width: parent.width
     height: label.height * lineHeight
     radius: vpx(3)
@@ -42,7 +43,7 @@ Rectangle {
 
     Text {
         id: label
-        color: root.focus ? "#eee" : "#666"
+        color: CONFIGS.getForegroundColour(api)
         font {
             pixelSize: vpx(18)
             family: globalFonts.sans

@@ -16,7 +16,7 @@
 
 
 import QtQuick 2.0
-import "../constants.js" as CONSTANTS
+import "../configs.js" as CONFIGS
 
 Item {
     property alias platformShortName: label.text
@@ -28,7 +28,7 @@ Item {
         id: main
         width: parent.width * 0.8
         height: parent.height
-        color: CONSTANTS.INDIGO
+        color: CONFIGS.getMainColour(api)
     }
 
     Rectangle {
@@ -44,7 +44,7 @@ Item {
             id: label
             width: 0
             text: ""
-            color: CONSTANTS.FOREGROUND_LIGHT
+            color: CONFIGS.getForegroundColour(api)
 						opacity: parent.parent.isOnTop ? 1.0 : 0.3
             anchors {
                 left: parent.left
@@ -61,7 +61,7 @@ Item {
         }
 
         Rectangle {
-            color: CONSTANTS.FOREGROUND_LIGHT
+            color: CONFIGS.getForegroundColour(api)
 						opacity: parent.parent.isOnTop ? 1.0 : 0.3
             width: parent.width
             height: vpx(2)
@@ -88,7 +88,7 @@ Item {
 
         Text {
             text: platformShortName
-            color: CONSTANTS.FOREGROUND_LIGHT
+            color: CONFIGS.getForegroundColour(api)
             anchors.fill: parent
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

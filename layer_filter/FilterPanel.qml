@@ -16,7 +16,7 @@
 
 
 import QtQuick 2.6
-
+import "../configs.js" as CONFIGS
 
 FocusScope {
     id: root
@@ -33,7 +33,7 @@ FocusScope {
 
     Rectangle {
         id: panel
-        color: "#ff6235"
+        color: CONFIGS.getMainColour(api)
         anchors.fill: parent
     }
 

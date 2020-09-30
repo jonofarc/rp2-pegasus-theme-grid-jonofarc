@@ -25,7 +25,6 @@ import "layer_gameinfo"
 import "layer_grid"
 import "layer_platform"
 
-
 FocusScope {
     Keys.onPressed: {
         if (event.isAutoRepeat)

@@ -1,26 +1,44 @@
 .pragma library
-
 // DFOXpro Colours guideline
 // Take next guidelne for example when you chose the colour
 // the default indigo is #4b0082
 // THE indigo (screen dye) in the rp2 screen@50%brightness with sun light behind is more like #332b51
 
 // also night colour means less blue light
+const
+	FOREGROUND_LIGHT = "white",
+	BACKGROUND_LIGHT = "#ccc",
+	FOREGROUND_DARK = "#333",
+	BACKGROUND_DARK = "#222",
 
-var FOREGROUND_LIGHT = "white";
-var BACKGROUND_LIGHT = "#333";
-var FOREGROUND_DARK = "#333";
-var BACKGROUND_DARK = "#222";
+//MAIN COLOURS LIST
+	INDIGO = "#332b51",
+// @TODO fill with better colours
+	INDIGO_NIGHT = "#332b11",
 
-var INDIGO = "#332b51";
-// @TODO fill with valid colours
-var INDIGO_NIGHT = "#332b51";
+	YELLOW = "#fce114",
+	YELLOW_NIGHT = "#fce100",
 
-var YELLOW = "yellow";
-var YELLOW_NIGHT = "yellow";
+	BBBLUE = "#0000ff",
+	BBBLUE_NIGHT = "#000011",
 
-var BBBLUE = "blue";
-var BBBLUE_NIGHT = "blue";
+	PINK = "#fc92d5",
+	PINK_NIGHT = "#fc9211",
 
-var PINK = "pink";
-var PINK_NIGHT = "pink";
+	DEFAULT_MAIN_COLOUR = 'PINK'
+
+// export CONSTANTS = {
+// 	FOREGROUND_LIGHT: FOREGROUND_LIGHT,
+// 	BACKGROUND_LIGHT: BACKGROUND_LIGHT,
+// 	FOREGROUND_DARK: FOREGROUND_DARK,
+// 	BACKGROUND_DARK: BACKGROUND_DARK,
+// 	INDIGO: INDIGO,
+// 	INDIGO_NIGHT: INDIGO_NIGHT,
+// 	YELLOW: YELLOW,
+// 	YELLOW_NIGHT: YELLOW_NIGHT,
+// 	BBBLUE: BBBLUE,
+// 	BBBLUE_NIGHT: BBBLUE_NIGHT,
+// 	PINK: PINK,
+// 	PINK_NIGHT: PINK_NIGHT,
+// 	DEFAULT_MAIN_COLOUR: DEFAULT_MAIN_COLOUR,
+// }

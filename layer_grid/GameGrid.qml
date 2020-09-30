@@ -16,7 +16,7 @@
 
 
 import QtQuick 2.3
-import "../constants.js" as CONSTANTS
+import "../configs.js" as CONFIGS
 
 
 FocusScope {
@@ -110,7 +110,7 @@ FocusScope {
         displayMarginBeginning: anchors.topMargin
 
         highlight: Rectangle {
-            color: CONSTANTS.INDIGO
+            color: CONFIGS.getMainColour(api)
             width: grid.cellWidth
             height: grid.cellHeight
             scale: 1.20

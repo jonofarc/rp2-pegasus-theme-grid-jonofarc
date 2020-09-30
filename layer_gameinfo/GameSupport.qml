@@ -1,6 +1,5 @@
 import QtQuick 2.0
-import "qrc:/qmlutils" as PegasusUtils
-import "../constants.js" as CONSTANTS
+import "../configs.js" as CONFIGS
 
 Rectangle {
 	property var game
@@ -25,9 +24,14 @@ Rectangle {
 	}
 
 	// Text {
-	// 	text: parent.parent.width + ' ' + parent.parent.right + '|' + parent.parent.height + ' ' + parent.parent.bottom
-	// 	color: CONSTANTS.FOREGROUND_LIGHT
-	// 	width: parent.width
+	// 	text: (game && JSON.stringify(game))
+	// 	color: CONFIGS.getForegroundColour(api)
+	// 	width: parent.parent.width
+	// 	height: 350
+	// 	anchors {
+	// 		right: parent.parent.right
+	// 		bottom: parent.parent.bottom
+	// 	}
 	// 	wrapMode: Text.WordWrap
 	// }
 }
