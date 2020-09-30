@@ -24,6 +24,7 @@ import "layer_filter"
 import "layer_gameinfo"
 import "layer_grid"
 import "layer_platform"
+import "layer_guide"
 
 FocusScope {
     Keys.onPressed: {
@@ -82,7 +83,7 @@ FocusScope {
         gridMarginRight: vpx(6)
 
         anchors.top: topbar.bottom
-        anchors.bottom: parent.bottom
+        anchors.bottom: bottombar.top
         anchors.left: parent.left
         anchors.right: parent.right
 
@@ -97,8 +98,10 @@ FocusScope {
 
         panelWidth: parent.width * 0.7 + vpx(72)
         anchors {
-            top: topbar.bottom; bottom: parent.bottom
-            left: parent.left; right: parent.right
+            top: topbar.bottom
+            bottom: bottombar.top
+            left: parent.left
+            right: parent.right
         }
 
         game: gamegrid.currentGame
@@ -107,17 +110,27 @@ FocusScope {
         onFiltersRequested: filter.focus = true
         onLaunchRequested: launchGame()
     }
+
     GameSupport {
-			id: gamesupport
+        id: gamesupport
 
-			anchors {
-				right: parent.right
-				rightMargin: 32
-				bottom: parent.bottom
-				bottomMargin: 32
-			}
+        anchors {
+            right: parent.right
+            rightMargin: 32
+            bottom: bottombar.top
+            bottomMargin: 32
+        }
 
-			game: gamegrid.currentGame
+        game: gamegrid.currentGame
+    }
+
+    GuideBar {
+        id: bottombar
+        anchors {
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
     }
 
     FilterLayer {
@@ -125,6 +138,7 @@ FocusScope {
         anchors.fill: parent
         onCloseRequested: gamegrid.focus = true
     }
+
     SortFilterProxyModel {
         id: filteredGames
         sourceModel: topbar.currentCollection.games

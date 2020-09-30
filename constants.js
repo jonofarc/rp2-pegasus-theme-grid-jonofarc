@@ -6,6 +6,7 @@
 
 // also night colour means less blue light
 const
+	FONT_SIZE = 14,
 	FOREGROUND_LIGHT = "white",
 	BACKGROUND_LIGHT = "#ccc",
 	FOREGROUND_DARK = "#333",

@@ -17,6 +17,7 @@
 
 import QtQuick 2.0
 import "../configs.js" as CONFIGS
+import "../constants.js" as CONSTANTS
 
 
 Rectangle {
@@ -45,8 +46,7 @@ Rectangle {
         id: label
         color: CONFIGS.getForegroundColour(api)
         font {
-            pixelSize: vpx(18)
-            family: globalFonts.sans
+            pixelSize: CONSTANTS.FONT_SIZE
             bold: true
         }
         anchors.centerIn: parent

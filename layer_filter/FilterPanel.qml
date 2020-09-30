@@ -53,7 +53,6 @@ FocusScope {
             color: root.textColor
             font.bold: true
             font.pixelSize: vpx(26)
-            font.family: globalFonts.sans
             height: font.pixelSize * 1.5
         }
 
