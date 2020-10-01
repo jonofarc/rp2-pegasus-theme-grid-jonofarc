@@ -58,8 +58,9 @@ FocusScope {
         id: panel
         z: 400
         focus: true
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.left
+        anchors {
+            right: parent.left
+        }
         visible: false
 
         MouseArea {

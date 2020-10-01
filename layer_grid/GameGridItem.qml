@@ -85,7 +85,6 @@ Item {
         color: "#eee"
         font {
             pixelSize: vpx(16)
-            family: globalFonts.sans
         }
     }
 

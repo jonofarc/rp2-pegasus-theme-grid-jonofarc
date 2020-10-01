@@ -17,6 +17,7 @@
 
 import QtQuick 2.6
 import QtMultimedia 5.9
+import "../constants.js" as CONSTANTS
 
 
 Item {
@@ -69,7 +70,6 @@ Item {
                 bold: true
                 pixelSize: vpx(30)
                 capitalization: Font.SmallCaps
-                family: globalFonts.sans
             }
 
             visible: parent.status != Image.Ready && parent.status != Image.Loading
@@ -118,33 +118,31 @@ Item {
         }
         color: "#eee"
         font {
-            pixelSize: vpx(18)
-            family: globalFonts.sans
+            pixelSize: CONSTANTS.FONT_SIZE
         }
 
         visible: text
     }
 
-    Text {
-        id: summary
-        width: parent.width
-        wrapMode: Text.WordWrap
-
-        anchors.top: releaseDetails.bottom
-        topPadding: vpx(20)
-        bottomPadding: vpx(40)
-
-        text: game ? (game.summary || game.description) : ""
-        color: "#eee"
-        font {
-            pixelSize: vpx(16)
-            family: globalFonts.sans
-        }
-        maximumLineCount: 4
-        elide: Text.ElideRight
-
-        visible: text
-    }
+    // Text {
+    //     id: summary
+    //     width: parent.width
+    //     wrapMode: Text.WordWrap
+    //
+    //     anchors.top: releaseDetails.bottom
+    //     topPadding: vpx(20)
+    //     bottomPadding: vpx(40)
+    //
+    //     text: game ? (game.summary || game.description) : ""
+    //     color: "#eee"
+    //     font {
+    //         pixelSize: vpx(16)
+    //     }
+    //     maximumLineCount: 4
+    //     elide: Text.ElideRight
+    //
+    //     visible: text
+    // }
 
     Rectangle {
         id: videoBox

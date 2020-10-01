@@ -16,8 +16,8 @@
 
 
 import QtQuick 2.3
-import "../constants.js" as CONSTANTS
-
+import "../configs.js" as CONFIGS
+import "../layer_guide"
 
 FocusScope {
     id: root
@@ -110,7 +110,7 @@ FocusScope {
         displayMarginBeginning: anchors.topMargin
 
         highlight: Rectangle {
-            color: CONSTANTS.INDIGO
+            color: CONFIGS.getMainColour(api)
             width: grid.cellWidth
             height: grid.cellHeight
             scale: 1.20
@@ -142,6 +142,37 @@ FocusScope {
                     grid.currentRecalcs++;
                     grid.update_cell_height_ratio(imageWidth, imageHeight);
                 }
+            }
+        }
+    }
+
+
+    Rectangle {
+        width: grid.width + 35
+        height: parent.height
+        color: "#00cc0000"
+        anchors {
+            top: parent.top
+            right: parent.right
+        }
+
+        ButtonHint {
+            id: l2
+            hint: ''
+            icon: 5
+            anchors {
+                top: parent.top
+                left: parent.left
+            }
+        }
+
+        ButtonHint {
+            id: r2
+            hint: ''
+            icon: 8
+            anchors {
+                bottom: parent.bottom
+                right: parent.right
             }
         }
     }

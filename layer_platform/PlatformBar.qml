@@ -17,15 +17,17 @@
 
 import QtQuick 2.0
 import "qrc:/qmlutils" as PegasusUtils
-import "../constants.js" as CONSTANTS
+import "../configs.js" as CONFIGS
+import "../layer_guide"
 
 Rectangle {
     property alias model: platformPath.model
     property alias currentIndex: platformPath.currentIndex
     readonly property var currentCollection: model.get(currentIndex)
 
-    color: CONSTANTS.BACKGROUND_LIGHT
+    color: CONFIGS.getBackgroundColour(api)
     height: vpx(54)
+    //width: parent.width
 
     function next() {
         platformPath.incrementCurrentIndex();
@@ -72,6 +74,26 @@ Rectangle {
             z: PathView.itemZ
             width: parent.parent.width * 0.5
             height: vpx(72)
+        }
+    }
+
+    ButtonHint {
+        id: l1
+        hint: ''
+        icon: 4
+        colour: CONFIGS.getForegroundColour(api)
+        anchors {
+            left: parent.left
+        }
+    }
+
+    ButtonHint {
+        id: r1
+        hint: ''
+        icon: 7
+        colour: CONFIGS.getForegroundColour(api)
+        anchors {
+            right: parent.right
         }
     }
 

@@ -18,6 +18,7 @@
 import QtQuick 2.6
 import QtGraphicalEffects 1.0
 import "qrc:/qmlutils" as PegasusUtils
+import "../constants.js" as CONSTANTS
 
 
 Item {
@@ -42,13 +43,12 @@ Item {
 
         Text {
             color: "#eee"
-            text: (game && game.description) || ""
+            text: game ? (game.summary || game.description) : ""
             width: parent.width
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignJustify
             font {
-                pixelSize: vpx(16)
-                family: globalFonts.sans
+                pixelSize: CONSTANTS.FONT_SIZE
             }
         }
     }
@@ -58,13 +58,13 @@ Item {
         width: parent.width
         anchors.bottom: actionButtons.top
 
-        topPadding: labelFontSize * 1.5
+        topPadding: 5
         bottomPadding: topPadding
         spacing: vpx(4)
 
         readonly property color labelColor: "#4ae";
         readonly property int labelSpacing: labelFontSize / 2
-        readonly property int labelFontSize: vpx(17)
+        readonly property int labelFontSize: CONSTANTS.FONT_SIZE
 
         Row {
             width: parent.width
@@ -76,8 +76,6 @@ Item {
                 color: playtimes.labelColor
                 font {
                     pixelSize: playtimes.labelFontSize
-                    family: globalFonts.sans
-                    capitalization: Font.AllUppercase
                 }
                 horizontalAlignment: Text.AlignRight
             }
@@ -104,7 +102,6 @@ Item {
                 color: "#eee"
                 font {
                     pixelSize: playtimes.labelFontSize
-                    family: globalFonts.sans
                 }
             }
         }
@@ -119,8 +116,6 @@ Item {
                 color: playtimes.labelColor;
                 font {
                     pixelSize: playtimes.labelFontSize
-                    family: globalFonts.sans
-                    capitalization: Font.AllUppercase
                 }
                 horizontalAlignment: Text.AlignRight
             }
@@ -139,7 +134,6 @@ Item {
                 color: "#eee"
                 font {
                     pixelSize: playtimes.labelFontSize
-                    family: globalFonts.sans
                 }
             }
         }
