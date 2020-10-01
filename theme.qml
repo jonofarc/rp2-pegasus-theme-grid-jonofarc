@@ -135,7 +135,10 @@ FocusScope {
 
     FilterLayer {
         id: filter
-        anchors.fill: parent
+        anchors {
+            top: topbar.bottom
+            
+        }
         onCloseRequested: gamegrid.focus = true
     }
 
