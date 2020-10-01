@@ -17,6 +17,7 @@
 
 import QtQuick 2.0
 import "../configs.js" as CONFIGS
+import QtGraphicalEffects 1.0
 
 Item {
     property alias platformShortName: label.text
@@ -44,8 +45,7 @@ Item {
             id: label
             width: 0
             text: ""
-            color: CONFIGS.getForegroundColour(api)
-						opacity: parent.parent.isOnTop ? 1.0 : 0.3
+            color: parent.parent.isOnTop ? CONFIGS.getForegroundColour(api) : CONFIGS.getForegroundGrey(api)
             anchors {
                 left: parent.left
                 bottom: parent.bottom
@@ -61,8 +61,7 @@ Item {
         }
 
         Rectangle {
-            color: CONFIGS.getForegroundColour(api)
-						opacity: parent.parent.isOnTop ? 1.0 : 0.3
+            color: parent.parent.isOnTop ? CONFIGS.getForegroundColour(api) : CONFIGS.getForegroundGrey(api)
             width: parent.width
             height: vpx(2)
             anchors.top: parent.bottom
@@ -72,12 +71,12 @@ Item {
     }
 
     Image {
+        id: platformimg
         source: "../assets/logos/" + platformShortName + ".svg"
         sourceSize.height: 100
         fillMode: Image.PreserveAspectFit
 
         asynchronous: true
-        opacity: parent.isOnTop ? 1.0 : 0.3
 
         width: parent.width * 0.6
         height: parent.height - vpx(12)
@@ -88,7 +87,7 @@ Item {
 
         Text {
             text: platformShortName
-            color: CONFIGS.getForegroundColour(api)
+            color: parent.isOnTop ? CONFIGS.getForegroundColour(api) : CONFIGS.getForegroundGrey(api)
             anchors.fill: parent
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -99,5 +98,12 @@ Item {
             font.pixelSize: vpx(36)
             font.family: globalFonts.condensed
         }
+    }
+
+
+    ColorOverlay {
+        anchors.fill: platformimg
+        source: platformimg
+        color: parent.isOnTop ? CONFIGS.getForegroundColour(api) : CONFIGS.getForegroundGrey(api)
     }
 }

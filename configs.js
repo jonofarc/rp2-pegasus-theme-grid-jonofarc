@@ -58,6 +58,16 @@ const getForegroundColour = function (api) {
  * Get background colour based on luminanace of Main colour
  *
  */
+const getForegroundGrey = function (api) {
+	let mainColour  = getMainColour(api)
+	if(luminance(mainColour) < 0.5){
+		return CONSTANTS.BACKGROUND_LIGHT
+	} else return CONSTANTS.BACKGROUND_DARK
+}
+/**
+ * Get background colour based on luminanace of Main colour
+ *
+ */
 const getBackgroundColour = function (api) {
 	let mainColour  = getMainColour(api)
 	if(luminance(mainColour) < 0.5){

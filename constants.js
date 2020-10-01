@@ -7,10 +7,10 @@
 // also night colour means less blue light
 const
 	FONT_SIZE = 14,
-	FOREGROUND_LIGHT = "white",
-	BACKGROUND_LIGHT = "#ccc",
-	FOREGROUND_DARK = "#333",
-	BACKGROUND_DARK = "#222",
+	FOREGROUND_LIGHT = "#ffffff",
+	BACKGROUND_LIGHT = "#cccccc",
+	FOREGROUND_DARK = "#222222",
+	BACKGROUND_DARK = "#555555",
 
 //MAIN COLOURS LIST
 	INDIGO = "#332b51",
