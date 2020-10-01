@@ -1,9 +1,12 @@
 import QtQuick 2.0
+import QtGraphicalEffects 1.0
 import "../constants.js" as CONSTANTS
 
 Rectangle {
-    property string hint: 'Guide'
+    property string hint: ''
+    property string colour: ''
     property int icon: 1
+
     color: "#00111111"
 
     height: 34
@@ -24,10 +27,16 @@ Rectangle {
         }
     }
 
+    ColorOverlay {
+        anchors.fill: iconimage
+        source: iconimage
+        color: colour || '#fff'
+    }
+
     Text {
         id:hinttext
         text: hint
-        color: '#fff'
+        color: colour || '#fff'
         font.pixelSize: CONSTANTS.FONT_SIZE
         anchors{
             left: iconimage.right
