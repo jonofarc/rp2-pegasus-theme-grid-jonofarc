@@ -17,6 +17,7 @@
 
 import QtQuick 2.6
 import "../configs.js" as CONFIGS
+import "../constants.js" as CONSTANTS
 
 FocusScope {
     id: root
@@ -26,9 +27,10 @@ FocusScope {
     property alias withFavorite: itemFavorite.checked
 
     property alias panelColor: panel.color
-    property color textColor: "#eee"
+    property color textColor: CONFIGS.getForegroundColour(api)
 
-    width: content.width
+    width: parent.parent.width * 0.4
+    //content.width
     height: content.height
 
     Rectangle {
@@ -40,12 +42,12 @@ FocusScope {
     Column {
         id: content
 
-        property int normalTextSize: vpx(20)
+        property int normalTextSize: CONSTANTS.FONT_SIZE
         property int selectedIndex: 0
         padding: vpx(20)
         spacing: vpx(8)
 
-        width: vpx(300)
+        width: parent.width
 
         Text {
             id: header
