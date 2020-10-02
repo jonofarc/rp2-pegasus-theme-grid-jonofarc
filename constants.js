@@ -8,7 +8,7 @@
 const
 	FONT_SIZE = 14,
 	FOREGROUND_LIGHT = "#ffffff",
-	BACKGROUND_LIGHT = "#cccccc",
+	BACKGROUND_LIGHT = "#bbbbbb",
 	FOREGROUND_DARK = "#222222",
 	BACKGROUND_DARK = "#555555",
 
