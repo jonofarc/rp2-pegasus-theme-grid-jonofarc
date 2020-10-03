@@ -26,9 +26,11 @@ import "layer_grid"
 import "layer_platform"
 import "layer_guide"
 import "layer_theme_settings"
+import "configs.js" as CONFIGS
 
 FocusScope {
     Keys.onPressed: {
+        // debug.text = event.key
         if (event.isAutoRepeat)
             return;
 
@@ -63,6 +65,13 @@ FocusScope {
             event.accepted = true
             gamepreview.togglePlayPauseVideo()
             // debug.text = 'asd'
+            return;
+        }
+
+        // Retroid Joystick
+        if(event.key == 0) {
+            event.accepted = true
+            bottombar.toggleHelp()
             return;
         }
     }
@@ -107,7 +116,7 @@ FocusScope {
         gridMarginRight: vpx(6)
 
         anchors.top: topbar.bottom
-        anchors.bottom: bottombar.top
+        anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
 
@@ -154,6 +163,30 @@ FocusScope {
             bottom: parent.bottom
             left: parent.left
             right: parent.right
+        }
+    }
+
+    ButtonHint {
+        hint: '?'
+        icon: 'input_STCK-L'
+        colour: CONFIGS.getForegroundColour(api)
+        ignoreGlobalVisible: true
+        localVisible: !Globals.guideHintsAreVisible
+        z: 400
+        anchors {
+            right: parent.right
+            top: parent.top
+            topMargin: -4
+        }
+    }
+    ButtonHint {
+        hint: 'Hide help'
+        icon: 'input_STCK-L'
+        backgroundcolour: "#88111111"
+        anchors {
+            left: parent.left
+            bottom: parent.bottom
+            bottomMargin: 34
         }
     }
 

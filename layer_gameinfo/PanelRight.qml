@@ -201,7 +201,6 @@ Item {
             anchors { fill: parent; margins: 1 }
             fillMode: Image.PreserveAspectFit
 
-						//Also looks like there is a typo with tittle and tile, simply there is no titlescreen T.T
             source: (game && game.assets.screenshot && game.assets.screenshot.replace('/media/screenshot', '/media/screenshottitle/')) || ""
             sourceSize { width: 512; height: 512 }
             asynchronous: true
@@ -231,7 +230,7 @@ Item {
         ButtonHint {
             id: select
             hint: (videoPreview.playbackState == MediaPlayer.PlayingState ? 'Pause' : 'Play') + ' video'
-            icon: 10
+            icon: '10'
             anchors {
                 bottom: videoPreview.top
                 left: videoPreview.left
