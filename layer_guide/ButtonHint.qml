@@ -10,7 +10,7 @@ Rectangle {
     color: "#00111111"
 
     height: 34
-    width: iconimage.width+hinttext.width+15
+    width: iconimage.width+(hint ? hinttext.width+15 : 0)
 
     Image {
         id: iconimage
@@ -41,8 +41,8 @@ Rectangle {
         anchors{
             left: iconimage.right
             verticalCenter: parent.verticalCenter
-            leftMargin: 5
-            rightMargin: 5
+            leftMargin: hint ? 5 : 0
+            rightMargin: hint ? 5 : 0
         }
     }
 }

@@ -124,25 +124,54 @@ Item {
         visible: text
     }
 
-    // Text {
-    //     id: summary
-    //     width: parent.width
-    //     wrapMode: Text.WordWrap
-    //
-    //     anchors.top: releaseDetails.bottom
-    //     topPadding: vpx(20)
-    //     bottomPadding: vpx(40)
-    //
-    //     text: game ? (game.summary || game.description) : ""
-    //     color: "#eee"
-    //     font {
-    //         pixelSize: vpx(16)
-    //     }
-    //     maximumLineCount: 4
-    //     elide: Text.ElideRight
-    //
-    //     visible: text
-    // }
+    Rectangle {
+        width: parent.width
+        height: 20
+        color: '#00ff0000'
+        anchors {
+            top: releaseDetails. bottom
+        }
+
+        Text {
+            id: lastplayedlabel
+            text: "last played:"
+            width: parent.width * 0.5
+            color: '#ccc'
+            font {
+                pixelSize: playtimes.labelFontSize
+            }
+            horizontalAlignment: Text.AlignRight
+        }
+
+        Text {
+            text: {
+                if (!game)
+                    return "-";
+                if (isNaN(game.lastPlayed))
+                    return "never";
+
+                var now = new Date();
+
+                var diffHours = (now.getTime() - game.lastPlayed.getTime()) / 1000 / 60 / 60;
+                if (diffHours < 24 && now.getDate() === game.lastPlayed.getDate())
+                    return "today";
+
+                var diffDays = Math.round(diffHours / 24);
+                if (diffDays <= 1)
+                    return "yesterday";
+
+                return diffDays + " days ago"
+            }
+            color: "#eee"
+            font {
+                pixelSize: playtimes.labelFontSize
+            }
+            anchors {
+                left: lastplayedlabel. right
+                leftMargin: 5
+            }
+        }
+    }
 
     Rectangle {
         id: videoBox
