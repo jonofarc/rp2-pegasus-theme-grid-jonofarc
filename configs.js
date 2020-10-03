@@ -1,8 +1,6 @@
 .pragma library
 .import "./constants.js" as CONSTANTS
 
-const MAIN_COLOUR = 'main_colour'
-
 // private
 /**
  * rgb String - '#ffddeee'
@@ -25,7 +23,7 @@ function luminance(rgb) {
 // public
 
 const setMainColour = function (newColour, api) {
-	api.memory.set(MAIN_COLOUR, newColour)
+	api.memory.set(CONSTANTS.MAIN_COLOUR, newColour)
 }
 
 /**
@@ -34,7 +32,7 @@ const setMainColour = function (newColour, api) {
  *
  */
 const getMainColour = function (api) {
-	let mainColour  = api.memory.get(MAIN_COLOUR)
+	let mainColour  = api.memory.get(CONSTANTS.MAIN_COLOUR)
 	if(!mainColour){
 		mainColour = CONSTANTS.DEFAULT_MAIN_COLOUR
 		setMainColour(mainColour, api)

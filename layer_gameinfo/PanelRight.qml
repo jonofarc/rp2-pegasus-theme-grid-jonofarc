@@ -18,7 +18,7 @@
 import QtQuick 2.6
 import QtMultimedia 5.9
 import "../constants.js" as CONSTANTS
-
+import "../layer_guide"
 
 Item {
     property var game
@@ -28,6 +28,10 @@ Item {
         videoPreview.stop();
         videoPreview.playlist.clear();
         videoDelay.restart();
+        if (game && game.assets.videos.length > 0) {
+            for (var i = 0; i < game.assets.videos.length; i++)
+                videoPreview.playlist.addItem(game.assets.videos[i]);
+        }
     }
 
     // a small delay to avoid loading videos during scrolling
@@ -35,16 +39,20 @@ Item {
         id: videoDelay
         interval: 3000
         onTriggered: {
-            if (game && game.assets.videos.length > 0) {
-                for (var i = 0; i < game.assets.videos.length; i++)
-                    videoPreview.playlist.addItem(game.assets.videos[i]);
-
-                videoPreview.play();
-                videoPreview.state = "playing";
+            if(api.memory.get(CONSTANTS.ENABLE_AUTOPLAY)) {
+                videoPreview.play()
+                videoPreview.state = "playing"
             }
         }
     }
-
+    function togglePlayPauseVideo() {
+        if (videoPreview.playbackState == MediaPlayer.PlayingState) {
+             videoPreview.pause()
+         } else {
+             videoPreview.play()
+             videoPreview.state = "playing"
+         }
+    }
 
     Image {
         id: logo
@@ -140,9 +148,7 @@ Item {
             text: "last played:"
             width: parent.width * 0.5
             color: '#ccc'
-            font {
-                pixelSize: playtimes.labelFontSize
-            }
+
             horizontalAlignment: Text.AlignRight
         }
 
@@ -166,9 +172,7 @@ Item {
                 return diffDays + " days ago"
             }
             color: "#eee"
-            font {
-                pixelSize: playtimes.labelFontSize
-            }
+
             anchors {
                 left: lastplayedlabel. right
                 leftMargin: 5
@@ -197,7 +201,6 @@ Item {
             anchors { fill: parent; margins: 1 }
             fillMode: Image.PreserveAspectFit
 
-						//Also looks like there is a typo with tittle and tile, simply there is no titlescreen T.T
             source: (game && game.assets.screenshot && game.assets.screenshot.replace('/media/screenshot', '/media/screenshottitle/')) || ""
             sourceSize { width: 512; height: 512 }
             asynchronous: true
@@ -222,6 +225,16 @@ Item {
             transitions: Transition {
                 from: ""; to: "playing"
                 NumberAnimation { properties: 'opacity'; duration: 1000 }
+            }
+        }
+        ButtonHint {
+            id: select
+            hint: (videoPreview.playbackState == MediaPlayer.PlayingState ? 'Pause' : 'Play') + ' video'
+            icon: '10'
+            anchors {
+                bottom: videoPreview.top
+                left: videoPreview.left
+                // bottomMargin: 5
             }
         }
     }
