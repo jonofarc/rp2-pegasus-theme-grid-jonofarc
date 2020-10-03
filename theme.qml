@@ -25,6 +25,7 @@ import "layer_gameinfo"
 import "layer_grid"
 import "layer_platform"
 import "layer_guide"
+import "layer_theme_settings"
 
 FocusScope {
     Keys.onPressed: {
@@ -49,6 +50,11 @@ FocusScope {
         if (api.keys.isFilters(event)) {
             event.accepted = true;
             filter.focus = true;
+            return;
+        }
+        if (api.keys.isCancel(event)) {
+            event.accepted = true;
+            theme_settings.focus = true;
             return;
         }
     }
@@ -137,7 +143,14 @@ FocusScope {
         id: filter
         anchors {
             top: topbar.bottom
-            
+        }
+        onCloseRequested: gamegrid.focus = true
+    }
+
+    ThemeSettingsLayer {
+        id: theme_settings
+        anchors {
+            bottom: bottombar.top
         }
         onCloseRequested: gamegrid.focus = true
     }

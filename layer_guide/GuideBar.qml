@@ -17,7 +17,7 @@ Rectangle {
 
     ButtonHint {
         id: triangle
-        hint: 'Filter menu'
+        hint: 'Filter'
         icon: 3
         anchors {
             left: square.right
@@ -26,7 +26,16 @@ Rectangle {
 
     ButtonHint {
         id: cross
-        hint: 'Launch selected'
+        hint: 'Settings'
+        icon: 0
+        anchors {
+            left: triangle.right
+        }
+    }
+
+    ButtonHint {
+        id: circle
+        hint: 'Run game'
         icon: 1
         anchors {
             right: parent.right
