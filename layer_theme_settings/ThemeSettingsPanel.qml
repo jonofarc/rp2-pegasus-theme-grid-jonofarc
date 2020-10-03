@@ -90,14 +90,16 @@ FocusScope {
             fontSize: content.normalTextSize
 
             KeyNavigation.up: itemAndroid
-            KeyNavigation.down: itemAutopplay
+            KeyNavigation.down: itemAutoplay
         }
 
         CheckBox {
-            id: itemAutopplay
+            id: itemAutoplay
             text: "Enable video autoplay"
             textColor: root.textColor
             fontSize: content.normalTextSize
+            checked: api.memory.get(CONSTANTS.ENABLE_AUTOPLAY)
+            onCheckedChange: updateAutoplay()
 
             KeyNavigation.up: itemListAll
             KeyNavigation.down: itemLastOpen
@@ -109,7 +111,7 @@ FocusScope {
             textColor: root.textColor
             fontSize: content.normalTextSize
 
-            KeyNavigation.up: itemAutopplay
+            KeyNavigation.up: itemAutoplay
             KeyNavigation.down: itemColour
 
             // checked: api.memory.get('enableAndroidApps')
@@ -121,7 +123,9 @@ FocusScope {
     }
 
     function updateColour() {
-        // console.log('updateColour', itemColour.value)
         api.memory.set(CONSTANTS.MAIN_COLOUR, itemColour.value)
+    }
+    function updateAutoplay() {
+        api.memory.set(CONSTANTS.ENABLE_AUTOPLAY, itemAutoplay.checked)
     }
 }

@@ -57,7 +57,25 @@ FocusScope {
             theme_settings.focus = true;
             return;
         }
+
+        // Retroid SELECT Button
+        if(event.key == 1048586) {
+            event.accepted = true
+            gamepreview.togglePlayPauseVideo()
+            // debug.text = 'asd'
+            return;
+        }
     }
+
+    // Text {
+    //     id: debug
+    //     color: 'white'
+    //     anchors {
+    //         top: topbar.bottom
+    //         topMargin: 10
+    //     }
+    //     text: 'AGGGG'
+    // }
 
     PlatformBar {
         id: topbar
