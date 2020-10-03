@@ -115,12 +115,15 @@ Item {
                     parts.push(str);
                 }
             }
-            if (game.players > 1) {
-                let str = '\u263b\u2060'.repeat(Math.min(game.players, 4));
-                if (game.players > 4)
-                    str += '+';
-                parts.push(str);
-            }
+
+            // This show the smily faces, representing how many players can play.
+            // for some games with multitap is ridiculous
+            // if (game.players > 1) {
+            //     let str = '\u263b\u2060'.repeat(Math.min(game.players, 4));
+            //     if (game.players > 4)
+            //         str += '+';
+            //     parts.push(str);
+            // }
 
             return parts.join(' \u2014 ');
         }
