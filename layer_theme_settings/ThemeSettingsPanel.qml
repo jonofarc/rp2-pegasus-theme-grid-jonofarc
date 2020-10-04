@@ -57,28 +57,32 @@ FocusScope {
             text: "Enable favorite list"
             textColor: root.textColor
             fontSize: content.normalTextSize
+            checked: api.memory.get(CONSTANTS.ENABLE_FAVORITES)
+            onCheckedChange: updateFavorites()
 
-            KeyNavigation.down: itemAndroid
             KeyNavigation.up: itemColour
-        }
-
-        CheckBox {
-            id: itemAndroid
-            text: "Enable all apps list"
-            textColor: root.textColor
-            fontSize: content.normalTextSize
-
-            KeyNavigation.up: itemFavorites
             KeyNavigation.down: itemListAll
         }
 
         CheckBox {
             id: itemListAll
+            text: "Enable all apps list"
+            textColor: root.textColor
+            fontSize: content.normalTextSize
+            checked: api.memory.get(CONSTANTS.ENABLE_LIST_ALL)
+            onCheckedChange: updateListAll()
+
+            KeyNavigation.up: itemFavorites
+            KeyNavigation.down: itemAndroid
+        }
+
+        CheckBox {
+            id: itemAndroid
             text: "Enable Android app list"
             textColor: root.textColor
             fontSize: content.normalTextSize
 
-            KeyNavigation.up: itemAndroid
+            KeyNavigation.up: itemListAll
             KeyNavigation.down: itemAutoplay
         }
 
@@ -110,5 +114,11 @@ FocusScope {
     }
     function updateAutoplay() {
         api.memory.set(CONSTANTS.ENABLE_AUTOPLAY, itemAutoplay.checked)
+    }
+    function updateFavorites() {
+        api.memory.set(CONSTANTS.ENABLE_FAVORITES, itemFavorites.checked)
+    }
+    function updateListAll() {
+        api.memory.set(CONSTANTS.ENABLE_LIST_ALL, itemListAll.checked)
     }
 }

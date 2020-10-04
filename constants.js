@@ -45,7 +45,7 @@ const
 // api.memory keys used
     MAIN_COLOUR = 'main_colour',
     ENABLE_FAVORITES = 'enable_favorites',
-    ENABLE_ALL = 'enable_all',
+    ENABLE_LIST_ALL = 'enable_list_all',
     ENABLE_ANDROID = 'enable_android',
     ENABLE_AUTOPLAY = 'enable_autoplay',
     ENABLE_LAST_OPEN = 'enable_last_open'

@@ -23,7 +23,7 @@ import "../layer_guide"
 Rectangle {
     property alias model: platformPath.model
     property alias currentIndex: platformPath.currentIndex
-    readonly property var currentCollection: model.get(currentIndex)
+    readonly property var currentCollection: model[currentIndex]
 
     color: CONFIGS.getBackgroundColour(api)
     height: vpx(54)

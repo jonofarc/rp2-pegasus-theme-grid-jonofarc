@@ -23,8 +23,38 @@ import "layer_platform"
 import "layer_guide"
 import "layer_theme_settings"
 import "configs.js" as CONFIGS
+import "constants.js" as CONSTANTS
 
 FocusScope {
+    // Private
+    SortFilterProxyModel {
+        id: allFavorites
+        sourceModel: api.allGames
+        filters: ValueFilter { roleName: "favorite"; value: true; }
+    }
+    SortFilterProxyModel {
+        id: allLastPlayed
+        sourceModel: api.allGames
+        filters: ValueFilter { roleName: "lastPlayed"; value: ""; inverted: true; }
+        sorters: RoleSorter { roleName: "lastPlayed"; sortOrder: Qt.DescendingOrder }
+    }
+    SortFilterProxyModel {
+        id: filterLastPlayed
+        sourceModel: allLastPlayed
+        filters: IndexFilter { maximumIndex: {
+            if (allLastPlayed.count >= 17) return 17
+            return allLastPlayed.count
+        } }
+    }
+
+    property var allCollections: {
+        let collections = api.collections.toVarArray()
+        if(api.memory.get(CONSTANTS.ENABLE_FAVORITES)) collections.unshift({"name": "Favorites", "shortName": "favs", "games": allFavorites})
+        if(api.memory.get(CONSTANTS.ENABLE_LAST_OPEN)) collections.unshift({"name": "Last Played", "shortName": "last", "games": filterLastPlayed})
+        if(api.memory.get(CONSTANTS.ENABLE_LIST_ALL)) collections.unshift({"name": "All Games", "shortName": "all", "games": api.allGames})
+
+        return collections
+    }
     Keys.onPressed: {
         // debug.text = event.key
         if (event.isAutoRepeat)
@@ -79,7 +109,7 @@ FocusScope {
     //         top: topbar.bottom
     //         topMargin: 10
     //     }
-    //     text: 'AGGGG'
+    //     text: "ASD: "+topbar.currentCollection
     // }
 
     PlatformBar {
@@ -89,7 +119,7 @@ FocusScope {
         anchors.right: parent.right
         z: 300
 
-        model: api.collections
+        model: allCollections // api.collections
         onCurrentIndexChanged: gamegrid.cells_need_recalc()
     }
 
