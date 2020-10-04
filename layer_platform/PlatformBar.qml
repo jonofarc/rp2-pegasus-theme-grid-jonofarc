@@ -23,7 +23,7 @@ import "../layer_guide"
 Rectangle {
     property alias model: platformPath.model
     property alias currentIndex: platformPath.currentIndex
-    readonly property var currentCollection: model.get(currentIndex)
+    readonly property var currentCollection: model[currentIndex]
 
     color: CONFIGS.getBackgroundColour(api)
     height: vpx(54)
@@ -79,9 +79,10 @@ Rectangle {
 
     ButtonHint {
         id: l1
-        hint: ''
-        icon: 4
-        colour: CONFIGS.getForegroundColour(api)
+        hint: 'L Previous collection'
+        icon: '4'
+        backgroundcolour: "#88111111"
+        // colour: CONFIGS.getForegroundColour(api)
         anchors {
             left: parent.left
         }
@@ -89,11 +90,14 @@ Rectangle {
 
     ButtonHint {
         id: r1
-        hint: ''
-        icon: 7
-        colour: CONFIGS.getForegroundColour(api)
+        hint: 'R Next collection'
+        icon: '7'
+        backgroundcolour: "#88111111"
+        // colour: CONFIGS.getForegroundColour(api)
         anchors {
             right: parent.right
+            top: parent.top
+            topMargin: -4
         }
     }
 

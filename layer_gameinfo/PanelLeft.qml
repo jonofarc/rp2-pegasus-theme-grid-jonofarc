@@ -39,7 +39,7 @@ Item {
         id: scrollArea
         width: parent.width
         anchors.top: parent.top
-        anchors.bottom: playtimes.top
+        anchors.bottom: actionButtons.top
 
         Text {
             color: "#eee"
@@ -53,91 +53,52 @@ Item {
         }
     }
 
-    Column {
-        id: playtimes
-        width: parent.width
-        anchors.bottom: actionButtons.top
-
-        topPadding: 5
-        bottomPadding: topPadding
-        spacing: vpx(4)
-
-        readonly property color labelColor: "#4ae";
-        readonly property int labelSpacing: labelFontSize / 2
-        readonly property int labelFontSize: CONSTANTS.FONT_SIZE
-
-        Row {
-            width: parent.width
-            spacing: playtimes.labelSpacing
-
-            Text {
-                text: "last played:"
-                width: parent.width * 0.5
-                color: playtimes.labelColor
-                font {
-                    pixelSize: playtimes.labelFontSize
-                }
-                horizontalAlignment: Text.AlignRight
-            }
-
-            Text {
-                text: {
-                    if (!game)
-                        return "-";
-                    if (isNaN(game.lastPlayed))
-                        return "never";
-
-                    var now = new Date();
-
-                    var diffHours = (now.getTime() - game.lastPlayed.getTime()) / 1000 / 60 / 60;
-                    if (diffHours < 24 && now.getDate() === game.lastPlayed.getDate())
-                        return "today";
-
-                    var diffDays = Math.round(diffHours / 24);
-                    if (diffDays <= 1)
-                        return "yesterday";
-
-                    return diffDays + " days ago"
-                }
-                color: "#eee"
-                font {
-                    pixelSize: playtimes.labelFontSize
-                }
-            }
-        }
-
-        Row {
-            width: parent.width
-            spacing: playtimes.labelSpacing
-
-            Text {
-                text: "play time:"
-                width: parent.width * 0.5
-                color: playtimes.labelColor;
-                font {
-                    pixelSize: playtimes.labelFontSize
-                }
-                horizontalAlignment: Text.AlignRight
-            }
-
-            Text {
-                text: {
-                    if (!game)
-                        return "-";
-
-                    var minutes = Math.ceil(game.playTime / 60)
-                    if (minutes <= 90)
-                        return Math.round(minutes) + " minutes";
-
-                    return parseFloat((minutes / 60).toFixed(1)) + " hours"
-                }
-                color: "#eee"
-                font {
-                    pixelSize: playtimes.labelFontSize
-                }
-            }
-        }
-    }
+    // Column {
+    //     id: playtimes
+    //     width: parent.width
+    //     anchors.bottom: actionButtons.top
+    //
+    //     topPadding: 5
+    //     bottomPadding: topPadding
+    //     spacing: vpx(4)
+    //
+    //     readonly property color labelColor: "#4ae";
+    //     readonly property int labelSpacing: labelFontSize / 2
+    //     readonly property int labelFontSize: CONSTANTS.FONT_SIZE
+    //
+    //     // This DON'T show a real playtime I disable for consistency
+    //     // Row {
+    //     //     width: parent.width
+    //     //     spacing: playtimes.labelSpacing
+    //     //
+    //     //     Text {
+    //     //         text: "play time:"
+    //     //         width: parent.width * 0.5
+    //     //         color: playtimes.labelColor;
+    //     //         font {
+    //     //             pixelSize: playtimes.labelFontSize
+    //     //         }
+    //     //         horizontalAlignment: Text.AlignRight
+    //     //     }
+    //     //
+    //     //     Text {
+    //     //         text: {
+    //     //             if (!game)
+    //     //                 return "-";
+    //     //
+    //     //             var minutes = Math.ceil(game.playTime / 60)
+    //     //             if (minutes <= 90)
+    //     //                 return Math.round(minutes) + " minutes";
+    //     //
+    //     //             return parseFloat((minutes / 60).toFixed(1)) + " hours"
+    //     //         }
+    //     //         color: "#eee"
+    //     //         font {
+    //     //             pixelSize: playtimes.labelFontSize
+    //     //         }
+    //     //     }
+    //     // }
+    // }
 
     Column {
         id: actionButtons

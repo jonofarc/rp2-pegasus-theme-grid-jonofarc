@@ -14,10 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-// DFOXpro notes:
-// to change platforms Background colour (currently indigo) see PlatformBar
-
-
 import QtQuick 2.0
 import SortFilterProxyModel 0.2
 import "layer_filter"
@@ -25,9 +21,44 @@ import "layer_gameinfo"
 import "layer_grid"
 import "layer_platform"
 import "layer_guide"
+import "layer_theme_settings"
+import "configs.js" as CONFIGS
+import "constants.js" as CONSTANTS
 
 FocusScope {
+    // Private
+    SortFilterProxyModel {
+        id: allFavorites
+        sourceModel: api.allGames
+        filters: ValueFilter { roleName: "favorite"; value: true; }
+    }
+    SortFilterProxyModel {
+        id: allLastPlayed
+        sourceModel: api.allGames
+        filters: ValueFilter { roleName: "lastPlayed"; value: ""; inverted: true; }
+        sorters: RoleSorter { roleName: "lastPlayed"; sortOrder: Qt.DescendingOrder }
+    }
+    SortFilterProxyModel {
+        id: filterLastPlayed
+        sourceModel: allLastPlayed
+        filters: IndexFilter { maximumIndex: {
+            if (allLastPlayed.count >= 17) return 17
+            return allLastPlayed.count
+        } }
+    }
+
+    property var allCollections: {
+        let collections = api.collections.toVarArray()
+        if(api.memory.get(CONSTANTS.ENABLE_FAVORITES)) collections.unshift({"name": "Favorites", "shortName": "favs", "games": allFavorites})
+        if(api.memory.get(CONSTANTS.ENABLE_LAST_OPEN)) collections.unshift({"name": "Last Played", "shortName": "last", "games": filterLastPlayed})
+        if(api.memory.get(CONSTANTS.ENABLE_LIST_ALL)) collections.unshift({"name": "All Games", "shortName": "all", "games": api.allGames})
+        if(!api.memory.get(CONSTANTS.ENABLE_ANDROID)) collections.splice(collections.findIndex(c => c.shortName === "android"),1)
+        // @See GameGrid originalModel
+
+        return collections
+    }
     Keys.onPressed: {
+        // debug.text = event.key
         if (event.isAutoRepeat)
             return;
 
@@ -51,7 +82,37 @@ FocusScope {
             filter.focus = true;
             return;
         }
+        if (api.keys.isCancel(event)) {
+            event.accepted = true;
+            theme_settings.focus = true;
+            return;
+        }
+
+        // Retroid SELECT Button
+        if(event.key == 1048586) {
+            event.accepted = true
+            gamepreview.togglePlayPauseVideo()
+            // debug.text = 'asd'
+            return;
+        }
+
+        // Retroid Joystick
+        if(event.key == 0) {
+            event.accepted = true
+            bottombar.toggleHelp()
+            return;
+        }
     }
+
+    // Text {
+    //     id: debug
+    //     color: 'white'
+    //     anchors {
+    //         top: topbar.bottom
+    //         topMargin: 10
+    //     }
+    //     text: ''
+    // }
 
     PlatformBar {
         id: topbar
@@ -60,7 +121,7 @@ FocusScope {
         anchors.right: parent.right
         z: 300
 
-        model: api.collections
+        model: allCollections // api.collections
         onCurrentIndexChanged: gamegrid.cells_need_recalc()
     }
 
@@ -83,7 +144,7 @@ FocusScope {
         gridMarginRight: vpx(6)
 
         anchors.top: topbar.bottom
-        anchors.bottom: bottombar.top
+        anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
 
@@ -133,11 +194,42 @@ FocusScope {
         }
     }
 
+    ButtonHint {
+        hint: '?'
+        icon: 'input_STCK-L'
+        colour: CONFIGS.getForegroundColour(api)
+        ignoreGlobalVisible: true
+        localVisible: !Globals.guideHintsAreVisible
+        z: 400
+        anchors {
+            right: parent.right
+            top: parent.top
+            topMargin: -4
+        }
+    }
+    ButtonHint {
+        hint: 'Hide help'
+        icon: 'input_STCK-L'
+        backgroundcolour: "#88111111"
+        anchors {
+            left: parent.left
+            bottom: parent.bottom
+            bottomMargin: 34
+        }
+    }
+
     FilterLayer {
         id: filter
         anchors {
             top: topbar.bottom
-            
+        }
+        onCloseRequested: gamegrid.focus = true
+    }
+
+    ThemeSettingsLayer {
+        id: theme_settings
+        anchors {
+            bottom: bottombar.top
         }
         onCloseRequested: gamegrid.focus = true
     }
