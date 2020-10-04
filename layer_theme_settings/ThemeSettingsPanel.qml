@@ -81,6 +81,8 @@ FocusScope {
             text: "Enable Android app list"
             textColor: root.textColor
             fontSize: content.normalTextSize
+            checked: api.memory.get(CONSTANTS.ENABLE_ANDROID)
+            onCheckedChange: updateAndroid()
 
             KeyNavigation.up: itemListAll
             KeyNavigation.down: itemAutoplay
@@ -94,7 +96,7 @@ FocusScope {
             checked: api.memory.get(CONSTANTS.ENABLE_AUTOPLAY)
             onCheckedChange: updateAutoplay()
 
-            KeyNavigation.up: itemListAll
+            KeyNavigation.up: itemAndroid
             KeyNavigation.down: itemLastOpen
         }
 
@@ -120,5 +122,8 @@ FocusScope {
     }
     function updateListAll() {
         api.memory.set(CONSTANTS.ENABLE_LIST_ALL, itemListAll.checked)
+    }
+    function updateAndroid() {
+        api.memory.set(CONSTANTS.ENABLE_ANDROID, itemAndroid.checked)
     }
 }
