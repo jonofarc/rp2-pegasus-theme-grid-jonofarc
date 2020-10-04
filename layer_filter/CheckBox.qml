@@ -25,6 +25,7 @@ Row {
     property alias textColor: label.color
 
     property bool checked: false
+    signal checkedChange
 
     spacing: vpx(8)
 
@@ -53,7 +54,10 @@ Row {
 
         MouseArea {
             anchors.fill: parent
-            onClicked: root.checked = !root.checked
+            onClicked: {
+                root.checked = !root.checked
+                checkedChange()
+            }
         }
     }
 
@@ -73,6 +77,7 @@ Row {
         if (api.keys.isAccept(event) && !event.isAutoRepeat) {
             event.accepted = true;
             checked = !checked;
+            checkedChange()
         }
     }
 }

@@ -33,6 +33,10 @@ FocusScope {
 
     visible: game
 
+    function togglePlayPauseVideo() {
+        rightside.togglePlayPauseVideo()
+    }
+
     Keys.onPressed: {
         if (event.isAutoRepeat)
             return;

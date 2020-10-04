@@ -18,7 +18,7 @@
 import QtQuick 2.6
 import QtMultimedia 5.9
 import "../constants.js" as CONSTANTS
-
+import "../layer_guide"
 
 Item {
     property var game
@@ -28,6 +28,10 @@ Item {
         videoPreview.stop();
         videoPreview.playlist.clear();
         videoDelay.restart();
+        if (game && game.assets.videos.length > 0) {
+            for (var i = 0; i < game.assets.videos.length; i++)
+                videoPreview.playlist.addItem(game.assets.videos[i]);
+        }
     }
 
     // a small delay to avoid loading videos during scrolling
@@ -35,16 +39,20 @@ Item {
         id: videoDelay
         interval: 3000
         onTriggered: {
-            if (game && game.assets.videos.length > 0) {
-                for (var i = 0; i < game.assets.videos.length; i++)
-                    videoPreview.playlist.addItem(game.assets.videos[i]);
-
-                videoPreview.play();
-                videoPreview.state = "playing";
+            if(api.memory.get(CONSTANTS.ENABLE_AUTOPLAY)) {
+                videoPreview.play()
+                videoPreview.state = "playing"
             }
         }
     }
-
+    function togglePlayPauseVideo() {
+        if (videoPreview.playbackState == MediaPlayer.PlayingState) {
+             videoPreview.pause()
+         } else {
+             videoPreview.play()
+             videoPreview.state = "playing"
+         }
+    }
 
     Image {
         id: logo
@@ -107,12 +115,15 @@ Item {
                     parts.push(str);
                 }
             }
-            if (game.players > 1) {
-                let str = '\u263b\u2060'.repeat(Math.min(game.players, 4));
-                if (game.players > 4)
-                    str += '+';
-                parts.push(str);
-            }
+
+            // This show the smily faces, representing how many players can play.
+            // for some games with multitap is ridiculous
+            // if (game.players > 1) {
+            //     let str = '\u263b\u2060'.repeat(Math.min(game.players, 4));
+            //     if (game.players > 4)
+            //         str += '+';
+            //     parts.push(str);
+            // }
 
             return parts.join(' \u2014 ');
         }
@@ -124,25 +135,50 @@ Item {
         visible: text
     }
 
-    // Text {
-    //     id: summary
-    //     width: parent.width
-    //     wrapMode: Text.WordWrap
-    //
-    //     anchors.top: releaseDetails.bottom
-    //     topPadding: vpx(20)
-    //     bottomPadding: vpx(40)
-    //
-    //     text: game ? (game.summary || game.description) : ""
-    //     color: "#eee"
-    //     font {
-    //         pixelSize: vpx(16)
-    //     }
-    //     maximumLineCount: 4
-    //     elide: Text.ElideRight
-    //
-    //     visible: text
-    // }
+    Rectangle {
+        width: parent.width
+        height: 20
+        color: '#00ff0000'
+        anchors {
+            top: releaseDetails. bottom
+        }
+
+        Text {
+            id: lastplayedlabel
+            text: "last played:"
+            width: parent.width * 0.5
+            color: '#ccc'
+
+            horizontalAlignment: Text.AlignRight
+        }
+
+        Text {
+            text: {
+                if (!game)
+                    return "-";
+                if (isNaN(game.lastPlayed))
+                    return "never";
+
+                var now = new Date();
+
+                var diffHours = (now.getTime() - game.lastPlayed.getTime()) / 1000 / 60 / 60;
+                if (diffHours < 24 && now.getDate() === game.lastPlayed.getDate())
+                    return "today";
+
+                var diffDays = Math.round(diffHours / 24);
+                if (diffDays <= 1)
+                    return "yesterday";
+
+                return diffDays + " days ago"
+            }
+            color: "#eee"
+
+            anchors {
+                left: lastplayedlabel. right
+                leftMargin: 5
+            }
+        }
+    }
 
     Rectangle {
         id: videoBox
@@ -165,7 +201,6 @@ Item {
             anchors { fill: parent; margins: 1 }
             fillMode: Image.PreserveAspectFit
 
-						//Also looks like there is a typo with tittle and tile, simply there is no titlescreen T.T
             source: (game && game.assets.screenshot && game.assets.screenshot.replace('/media/screenshot', '/media/screenshottitle/')) || ""
             sourceSize { width: 512; height: 512 }
             asynchronous: true
@@ -190,6 +225,16 @@ Item {
             transitions: Transition {
                 from: ""; to: "playing"
                 NumberAnimation { properties: 'opacity'; duration: 1000 }
+            }
+        }
+        ButtonHint {
+            id: select
+            hint: (videoPreview.playbackState == MediaPlayer.PlayingState ? 'Pause' : 'Play') + ' video'
+            icon: '10'
+            anchors {
+                bottom: videoPreview.top
+                left: videoPreview.left
+                // bottomMargin: 5
             }
         }
     }

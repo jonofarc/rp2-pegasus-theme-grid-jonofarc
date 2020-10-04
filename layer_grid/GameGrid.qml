@@ -16,6 +16,7 @@
 
 
 import QtQuick 2.3
+import SortFilterProxyModel 0.2
 import "../configs.js" as CONFIGS
 import "../layer_guide"
 
@@ -47,7 +48,21 @@ FocusScope {
         grid.cellHeightRatio = 0.5;
     }
 
-    onOriginalModelChanged: if (memoryLoaded && grid.count) currentIndex = 0;
+    onOriginalModelChanged: {
+        // if(!api.memory.get(CONSTANTS.ENABLE_ANDROID)) {
+        //     SortFilterProxyModel {
+        //         id: noAndroidModel
+        //         sourceModel: originalModel
+        //         filters: ValueFilter {
+        //             roleName: 'collections(0).shortName'
+        //             value: 'android'
+        //             inverted: true
+        //         }
+        //     }
+        //     originalModel = noAndroidModel
+        // }
+        if (memoryLoaded && grid.count) currentIndex = 0
+    }
 
     GridView {
         id: grid
@@ -148,7 +163,7 @@ FocusScope {
 
 
     Rectangle {
-        width: grid.width + 35
+        width: grid.width + 30
         height: parent.height
         color: "#00cc0000"
         anchors {
@@ -158,8 +173,9 @@ FocusScope {
 
         ButtonHint {
             id: l2
-            hint: ''
-            icon: 5
+            hint: 'ZL Pg up'
+            icon: '5'
+            backgroundcolour: "#88111111"
             anchors {
                 top: parent.top
                 left: parent.left
@@ -167,11 +183,23 @@ FocusScope {
         }
 
         ButtonHint {
+            id: dpad
+            hint: 'Games in this collection'
+            icon: 'input_DPAD'
+            backgroundcolour: "#88111111"
+            anchors {
+                top: parent.top
+                right: parent.right
+            }
+        }
+        ButtonHint {
             id: r2
-            hint: ''
-            icon: 8
+            hint: 'ZR Pg down'
+            icon: '8'
+            backgroundcolour: "#88111111"
             anchors {
                 bottom: parent.bottom
+                bottomMargin: 34
                 right: parent.right
             }
         }

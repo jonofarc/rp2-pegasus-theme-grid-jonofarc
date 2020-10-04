@@ -6,40 +6,46 @@
 
 // also night colour means less blue light
 const
-	FONT_SIZE = 14,
-	FOREGROUND_LIGHT = "#ffffff",
-	BACKGROUND_LIGHT = "#cccccc",
-	FOREGROUND_DARK = "#222222",
-	BACKGROUND_DARK = "#555555",
+    FONT_SIZE = 14,
+    FOREGROUND_LIGHT = "#ffffff",
+    BACKGROUND_LIGHT = "#bbbbbb",
+    FOREGROUND_DARK = "#222222",
+    BACKGROUND_DARK = "#555555",
 
 //MAIN COLOURS LIST
-	INDIGO = "#332b51",
+    AVAILABLE_COLOURS = [
+        'YELLOW',
+        'BLUE',
+        'PINK',
+        'INDIGO',
+        'BLACK',
+        'GREY',
+    ],
+
+    INDIGO = "#332b51",
 // @TODO fill with better colours
-	INDIGO_NIGHT = "#332b11",
+    // INDIGO_NIGHT = "#332b11",
 
-	YELLOW = "#fce114",
-	YELLOW_NIGHT = "#fce100",
+// from retroid front page
+    YELLOW = "#feca4f",
+    // YELLOW_NIGHT = "#fce100",
 
-	BBBLUE = "#0000ff",
-	BBBLUE_NIGHT = "#000011",
+    BLUE = "#9ad2da",
+    // BLUE_NIGHT = "#000011",
 
-	PINK = "#fc92d5",
-	PINK_NIGHT = "#fc9211",
+    PINK = "#fe99a7",
+    // PINK_NIGHT = "#fc9211",
 
-	DEFAULT_MAIN_COLOUR = 'PINK'
+    BLACK = "#343434", // the ps2 and master system
+    GREY = "#cdc8c9", // the psx
+    WHITE = "#e1dad8", // the snes & gb
+    
+    DEFAULT_MAIN_COLOUR = 'PINK',
 
-// export CONSTANTS = {
-// 	FOREGROUND_LIGHT: FOREGROUND_LIGHT,
-// 	BACKGROUND_LIGHT: BACKGROUND_LIGHT,
-// 	FOREGROUND_DARK: FOREGROUND_DARK,
-// 	BACKGROUND_DARK: BACKGROUND_DARK,
-// 	INDIGO: INDIGO,
-// 	INDIGO_NIGHT: INDIGO_NIGHT,
-// 	YELLOW: YELLOW,
-// 	YELLOW_NIGHT: YELLOW_NIGHT,
-// 	BBBLUE: BBBLUE,
-// 	BBBLUE_NIGHT: BBBLUE_NIGHT,
-// 	PINK: PINK,
-// 	PINK_NIGHT: PINK_NIGHT,
-// 	DEFAULT_MAIN_COLOUR: DEFAULT_MAIN_COLOUR,
-// }
+// api.memory keys used
+    MAIN_COLOUR = 'main_colour',
+    ENABLE_FAVORITES = 'enable_favorites',
+    ENABLE_LIST_ALL = 'enable_list_all',
+    ENABLE_ANDROID = 'enable_android',
+    ENABLE_AUTOPLAY = 'enable_autoplay',
+    ENABLE_LAST_OPEN = 'enable_last_open'
