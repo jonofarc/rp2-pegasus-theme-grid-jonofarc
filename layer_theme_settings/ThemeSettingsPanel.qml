@@ -60,11 +60,6 @@ FocusScope {
 
             KeyNavigation.down: itemAndroid
             KeyNavigation.up: itemColour
-
-            // checked: api.memory.get('enableFavorites')
-            // nextCheckState: function() {
-            //     api.memory.set('enableFavorites', (checkState === Qt.Checked))
-            // }
         }
 
         CheckBox {
@@ -75,12 +70,6 @@ FocusScope {
 
             KeyNavigation.up: itemFavorites
             KeyNavigation.down: itemListAll
-
-            // checked: api.memory.get('enableAndroidApps')
-            // onClicked: api.memory.set('enableAndroidApps', (checkState === Qt.Checked))
-            // nextCheckState: function() {
-            //     api.memory.set('enableAndroidApps', (checkState === Qt.Checked))
-            // }
         }
 
         CheckBox {
@@ -113,12 +102,6 @@ FocusScope {
 
             KeyNavigation.up: itemAutoplay
             KeyNavigation.down: itemColour
-
-            // checked: api.memory.get('enableAndroidApps')
-            // onClicked: api.memory.set('enableAndroidApps', (checkState === Qt.Checked))
-            // nextCheckState: function() {
-            //     api.memory.set('enableAndroidApps', (checkState === Qt.Checked))
-            // }
         }
     }
 

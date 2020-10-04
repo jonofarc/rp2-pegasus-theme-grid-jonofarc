@@ -14,10 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-// DFOXpro notes:
-// to change platforms Background colour (currently indigo) see PlatformBar
-
-
 import QtQuick 2.0
 import SortFilterProxyModel 0.2
 import "layer_filter"
