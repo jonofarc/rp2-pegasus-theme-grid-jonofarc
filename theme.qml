@@ -289,8 +289,10 @@ FocusScope {
     }
 
     function launchGame() {
-        api.memory.set('collection', topbar.currentCollection.name)
-        api.memory.set('game', gamegrid.currentGame.title)
+        if(api.memory.get(CONSTANTS.ENABLE_LAST_OPEN) || false) {
+            api.memory.set('collection', topbar.currentCollection.name)
+            api.memory.set('game', gamegrid.currentGame.title)
+        }
         let currentGame
         if(gamegrid.currentGame.launch) currentGame = gamegrid.currentGame
         else if (topbar.currentCollection.shortName === "favs")
