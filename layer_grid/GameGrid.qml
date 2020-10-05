@@ -16,6 +16,7 @@
 
 
 import QtQuick 2.3
+import SortFilterProxyModel 0.2
 import "../configs.js" as CONFIGS
 import "../layer_guide"
 
@@ -47,7 +48,21 @@ FocusScope {
         grid.cellHeightRatio = 0.5;
     }
 
-    onOriginalModelChanged: if (memoryLoaded && grid.count) currentIndex = 0;
+    onOriginalModelChanged: {
+        // if(!api.memory.get(CONSTANTS.ENABLE_ANDROID)) {
+        //     SortFilterProxyModel {
+        //         id: noAndroidModel
+        //         sourceModel: originalModel
+        //         filters: ValueFilter {
+        //             roleName: 'collections(0).shortName'
+        //             value: 'android'
+        //             inverted: true
+        //         }
+        //     }
+        //     originalModel = noAndroidModel
+        // }
+        if (memoryLoaded && grid.count) currentIndex = 0
+    }
 
     GridView {
         id: grid
