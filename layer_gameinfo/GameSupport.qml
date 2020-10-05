@@ -18,8 +18,7 @@ Rectangle {
         }
 
         asynchronous: true
-        // currently pegasus does not send the support attribute
-        source: ((game && game.assets.screenshot.includes('/media/screenshot/')) ? game.assets.screenshot.replace('/media/screenshot/', '/media/support/') : "")
+        source: game && game.assets.cartridge ? game.assets.cartridge : ""
         fillMode: Image.PreserveAspectFit
     }
 }

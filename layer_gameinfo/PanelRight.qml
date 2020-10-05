@@ -28,7 +28,7 @@ Item {
         videoPreview.stop();
         videoPreview.playlist.clear();
         videoDelay.restart();
-        if (game && game.assets.videos.length > 0) {
+        if (game && game.assets && game.assets.videos.length > 0) {
             for (var i = 0; i < game.assets.videos.length; i++)
                 videoPreview.playlist.addItem(game.assets.videos[i]);
         }

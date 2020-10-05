@@ -45,7 +45,7 @@ FocusScope {
             label: "Colour"
             textColor: root.textColor
             model: CONSTANTS.AVAILABLE_COLOURS
-            value: api.memory.get(CONSTANTS.MAIN_COLOUR)
+            value: api.memory.get(CONSTANTS.MAIN_COLOUR) || ''
             onValueChange: updateColour()
 
             KeyNavigation.up: itemLastOpen
@@ -57,7 +57,7 @@ FocusScope {
             text: "Enable favorite list"
             textColor: root.textColor
             fontSize: content.normalTextSize
-            checked: api.memory.get(CONSTANTS.ENABLE_FAVORITES)
+            checked: api.memory.get(CONSTANTS.ENABLE_FAVORITES) || false
             onCheckedChange: updateFavorites()
 
             KeyNavigation.up: itemColour
@@ -69,7 +69,7 @@ FocusScope {
             text: "Enable all apps list"
             textColor: root.textColor
             fontSize: content.normalTextSize
-            checked: api.memory.get(CONSTANTS.ENABLE_LIST_ALL)
+            checked: api.memory.get(CONSTANTS.ENABLE_LIST_ALL) || false
             onCheckedChange: updateListAll()
 
             KeyNavigation.up: itemFavorites
@@ -81,7 +81,7 @@ FocusScope {
             text: "Enable Android app list"
             textColor: root.textColor
             fontSize: content.normalTextSize
-            checked: api.memory.get(CONSTANTS.ENABLE_ANDROID)
+            checked: api.memory.get(CONSTANTS.ENABLE_ANDROID) || false
             onCheckedChange: updateAndroid()
 
             KeyNavigation.up: itemListAll
@@ -93,7 +93,7 @@ FocusScope {
             text: "Enable video autoplay"
             textColor: root.textColor
             fontSize: content.normalTextSize
-            checked: api.memory.get(CONSTANTS.ENABLE_AUTOPLAY)
+            checked: api.memory.get(CONSTANTS.ENABLE_AUTOPLAY) || false
             onCheckedChange: updateAutoplay()
 
             KeyNavigation.up: itemAndroid
