@@ -289,8 +289,14 @@ FocusScope {
     }
 
     function launchGame() {
-        api.memory.set('collection', topbar.currentCollection.name);
-        api.memory.set('game', gamegrid.currentGame.title);
-        gamegrid.currentGame.launch();
+        api.memory.set('collection', topbar.currentCollection.name)
+        api.memory.set('game', gamegrid.currentGame.title)
+        let currentGame
+        if(gamegrid.currentGame.launch) currentGame = gamegrid.currentGame
+        else if (topbar.currentCollection.shortName === "favs")
+            currentGame = api.allGames.get(allFavorites.mapToSource(gamegrid.currentIndex))
+        else if (topbar.currentCollection.shortName === "last")
+            currentGame = api.allGames.get(allLastPlayed.mapToSource(gamegrid.currentIndex))
+        currentGame.launch();
     }
 }
