@@ -258,13 +258,18 @@ FocusScope {
     }
 
     Component.onCompleted: {
+        if (!api.memory.get(CONSTANTS.ENABLE_LAST_OPEN)) {
+            topbar.currentIndex = 0;
+            gamegrid.currentIndex = 0;
+            gamegrid.memoryLoaded = true;
+            return
+        }
+
         const last_collection = api.memory.get('collection');
         if (!last_collection)
             return;
 
-        const last_coll_idx = api
-            .collections
-            .toVarArray()
+        const last_coll_idx = allCollections
             .findIndex(c => c.name === last_collection);
         if (last_coll_idx < 0)
             return;
@@ -275,9 +280,7 @@ FocusScope {
         if (!last_game)
             return;
 
-        const last_game_idx = api
-            .collections
-            .get(last_coll_idx)
+        const last_game_idx = allCollections[last_coll_idx]
             .games
             .toVarArray()
             .findIndex(g => g.title === last_game);
