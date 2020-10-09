@@ -15,6 +15,7 @@ just [download](https://github.com/DFOXpro/rp2-pegasus-theme-grid/archive/master
 * A11y changes:
   * Better contrasts
   * Bigger/Unified font-text
+  * (20/10/09 New) Bigger icons/boxes
   * Full controller hint (via Joystick move)
   * Game description in game menu for better legibility
 

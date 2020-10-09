@@ -48,4 +48,5 @@ const
     ENABLE_LIST_ALL = 'enable_list_all',
     ENABLE_ANDROID = 'enable_android',
     ENABLE_AUTOPLAY = 'enable_autoplay',
-    ENABLE_LAST_OPEN = 'enable_last_open'
+    ENABLE_LAST_OPEN = 'enable_last_open',
+    SMALL_GRID = 'small_grid'
