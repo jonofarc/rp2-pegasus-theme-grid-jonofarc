@@ -18,6 +18,7 @@
 import QtQuick 2.3
 import SortFilterProxyModel 0.2
 import "../configs.js" as CONFIGS
+import "../constants.js" as CONSTANTS
 import "../layer_guide"
 
 FocusScope {
@@ -49,19 +50,8 @@ FocusScope {
     }
 
     onOriginalModelChanged: {
-        // if(!api.memory.get(CONSTANTS.ENABLE_ANDROID)) {
-        //     SortFilterProxyModel {
-        //         id: noAndroidModel
-        //         sourceModel: originalModel
-        //         filters: ValueFilter {
-        //             roleName: 'collections(0).shortName'
-        //             value: 'android'
-        //             inverted: true
-        //         }
-        //     }
-        //     originalModel = noAndroidModel
-        // }
         if (memoryLoaded && grid.count) currentIndex = 0
+        else currentIndex = grid.count && (currentIndex % grid.count)
     }
 
     GridView {
@@ -105,17 +95,22 @@ FocusScope {
         // we have to do it manually. Loop bindings and such also have to be avoided.
 
         property real columnCount: {
-            if (cellHeightRatio > 1.2) return 5;
-            if (cellHeightRatio > 0.6) return 4;
-            return 3;
+            if(api.memory.get(CONSTANTS.SMALL_GRID)) {
+                if (cellHeightRatio > 1.2) return 5
+                if (cellHeightRatio > 0.6) return 4
+                return 3
+            } else if (cellHeightRatio > 1.2) return 3
+            return 2
         }
 
         readonly property int maxRecalcs: 5
         property int currentRecalcs: 0
         property real cellHeightRatio: 0.5
 
-        function update_cell_height_ratio(img_w, img_h) {
-            cellHeightRatio = Math.min(Math.max(cellHeightRatio, img_h / img_w), 1.5);
+        function update_cell_height_ratio(img_w, img_h, isIcon) {
+            cellHeightRatio = isIcon
+            ? 1.5
+            : Math.min(Math.max(cellHeightRatio, img_h / img_w), 1.5);
         }
 
 
@@ -155,7 +150,7 @@ FocusScope {
             onImageLoaded: {
                 if (grid.currentRecalcs < grid.maxRecalcs) {
                     grid.currentRecalcs++;
-                    grid.update_cell_height_ratio(imageWidth, imageHeight);
+                    grid.update_cell_height_ratio(imageWidth, imageHeight, isIcon);
                 }
             }
         }
@@ -165,11 +160,24 @@ FocusScope {
     Rectangle {
         width: grid.width + 30
         height: parent.height
-        color: "#00cc0000"
+        color: "#00330000"
         anchors {
             top: parent.top
             right: parent.right
         }
+        // color: "#cc330000"
+        // Text {
+        //     id: griddebug
+        //     color: "#fff"
+        //     text: "("+currentIndex+")"+console.log('currentGame', JSON.stringify(currentGame))
+        //     wrapMode: Text.WordWrap
+        //     anchors {
+        //         top: parent.top
+        //         bottom: parent.bottom
+        //         left: parent.left
+        //         right: parent.right
+        //     }
+        // }
 
         ButtonHint {
             id: l2

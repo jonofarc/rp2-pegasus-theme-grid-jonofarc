@@ -29,7 +29,7 @@ Item {
 
     signal clicked()
     signal doubleClicked()
-    signal imageLoaded(int imgWidth, int imgHeight)
+    signal imageLoaded(int imgWidth, int imgHeight, bool isIcon)
 
     scale: selected ? 1.20 : 1.0
     z: selected ? 3 : 1
@@ -55,7 +55,15 @@ Item {
         fillMode: Image.PreserveAspectFit
 
         onStatusChanged: if (status === Image.Ready) {
-            root.imageLoaded(implicitWidth, implicitHeight);
+            root.imageLoaded(
+                implicitWidth,
+                implicitHeight,
+                ( // if grid cointain an android icon use small grid
+                    game &&
+                    game.assets &&
+                    game.assets.boxFront.includes('image://androidicons/')
+                )
+            );
         }
     }
 

@@ -97,6 +97,18 @@ FocusScope {
             onCheckedChange: updateAutoplay()
 
             KeyNavigation.up: itemAndroid
+            KeyNavigation.down: itemSmallGrid
+        }
+        
+        CheckBox {
+            id: itemSmallGrid
+            text: "Use small grid items"
+            textColor: root.textColor
+            fontSize: content.normalTextSize
+            checked: api.memory.get(CONSTANTS.SMALL_GRID) || false
+            onCheckedChange: updateSmallGrid()
+
+            KeyNavigation.up: itemAutoplay
             KeyNavigation.down: itemLastOpen
         }
 
@@ -105,8 +117,10 @@ FocusScope {
             text: "Keep last open"
             textColor: root.textColor
             fontSize: content.normalTextSize
+            checked: api.memory.get(CONSTANTS.ENABLE_LAST_OPEN) || false
+            onCheckedChange: updateLastOpen()
 
-            KeyNavigation.up: itemAutoplay
+            KeyNavigation.up: itemSmallGrid
             KeyNavigation.down: itemColour
         }
     }
@@ -125,5 +139,15 @@ FocusScope {
     }
     function updateAndroid() {
         api.memory.set(CONSTANTS.ENABLE_ANDROID, itemAndroid.checked)
+    }
+    function updateSmallGrid() {
+        api.memory.set(CONSTANTS.SMALL_GRID, itemSmallGrid.checked)
+    }
+    function updateLastOpen() {
+        api.memory.set(CONSTANTS.ENABLE_LAST_OPEN, itemLastOpen.checked)
+        if(!itemLastOpen.checked) {
+            api.memory.set('collection', '')
+            api.memory.set('game', '')
+        }
     }
 }
