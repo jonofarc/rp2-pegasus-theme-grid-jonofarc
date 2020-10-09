@@ -53,7 +53,7 @@ Rectangle {
             PathPercent { value: 0.08 }
             PathAttribute { name: "itemZ"; value: 199 }
 
-            PathLine { x: parent.width * 0.7; y: vpx(18) }
+            PathLine { x: parent.width * 0.8; y: vpx(18) }
             PathPercent { value: 1 }
             PathAttribute { name: "itemZ"; value: 0 }
         }
@@ -72,7 +72,7 @@ Rectangle {
             platformShortName: modelData.shortName
             isOnTop: PathView.isCurrentItem
             z: PathView.itemZ
-            width: parent.parent.width * 0.5
+            width: parent.parent.width * 0.4
             height: vpx(72)
         }
     }

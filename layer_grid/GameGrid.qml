@@ -158,7 +158,7 @@ FocusScope {
 
 
     Rectangle {
-        width: grid.width + 30
+        width: grid.width + 26
         height: parent.height
         color: "#00330000"
         anchors {

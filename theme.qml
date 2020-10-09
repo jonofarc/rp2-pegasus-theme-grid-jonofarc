@@ -139,7 +139,7 @@ FocusScope {
 
         focus: true
 
-        gridWidth: (parent.width * 0.6) - vpx(32)
+        gridWidth: parent.width * 0.66 - 20
         gridMarginTop: vpx(32)
         gridMarginRight: vpx(6)
 
@@ -157,7 +157,7 @@ FocusScope {
     GamePreview {
         id: gamepreview
 
-        panelWidth: parent.width * 0.7 + vpx(72)
+        panelWidth: parent.width * 0.66
         anchors {
             top: topbar.bottom
             bottom: bottombar.top
@@ -177,9 +177,7 @@ FocusScope {
 
         anchors {
             right: parent.right
-            rightMargin: 32
             bottom: bottombar.top
-            bottomMargin: 32
         }
 
         game: gamegrid.currentGame
