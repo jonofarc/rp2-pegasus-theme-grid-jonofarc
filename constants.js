@@ -49,4 +49,5 @@ const
     ENABLE_ANDROID = 'enable_android',
     ENABLE_AUTOPLAY = 'enable_autoplay',
     ENABLE_LAST_OPEN = 'enable_last_open',
-    SMALL_GRID = 'small_grid'
+    SMALL_GRID = 'small_grid',
+    HIDE_SUPPORT = 'hide_support'

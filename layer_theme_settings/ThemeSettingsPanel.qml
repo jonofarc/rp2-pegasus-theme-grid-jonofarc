@@ -109,6 +109,18 @@ FocusScope {
             onCheckedChange: updateSmallGrid()
 
             KeyNavigation.up: itemAutoplay
+            KeyNavigation.down: itemHideSupport
+        }
+        
+        CheckBox {
+            id: itemHideSupport
+            text: "Only show cartridge/disk on details"
+            textColor: root.textColor
+            fontSize: content.normalTextSize
+            checked: api.memory.get(CONSTANTS.HIDE_SUPPORT) || false
+            onCheckedChange: updateHideSupport()
+
+            KeyNavigation.up: itemSmallGrid
             KeyNavigation.down: itemLastOpen
         }
 
@@ -120,7 +132,7 @@ FocusScope {
             checked: api.memory.get(CONSTANTS.ENABLE_LAST_OPEN) || false
             onCheckedChange: updateLastOpen()
 
-            KeyNavigation.up: itemSmallGrid
+            KeyNavigation.up: itemHideSupport
             KeyNavigation.down: itemColour
         }
     }
@@ -142,6 +154,9 @@ FocusScope {
     }
     function updateSmallGrid() {
         api.memory.set(CONSTANTS.SMALL_GRID, itemSmallGrid.checked)
+    }
+    function updateHideSupport() {
+        api.memory.set(CONSTANTS.HIDE_SUPPORT, itemHideSupport.checked)
     }
     function updateLastOpen() {
         api.memory.set(CONSTANTS.ENABLE_LAST_OPEN, itemLastOpen.checked)
