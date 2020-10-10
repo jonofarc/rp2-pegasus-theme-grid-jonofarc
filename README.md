@@ -18,6 +18,7 @@ just [download](https://github.com/DFOXpro/rp2-pegasus-theme-grid/archive/master
   * (20/10/09 New) Bigger icons/boxes
   * Full controller hint (via Joystick move)
   * Game description in game menu for better legibility
+  * (20/10/09 New) Sutile changes on various sizes for better legibility
 
 ## License
 
