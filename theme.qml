@@ -74,7 +74,7 @@ FocusScope {
         }
         if (api.keys.isDetails(event)) {
             event.accepted = true;
-            gamepreview.focus = true;
+            gamepreview.focus = gamesupport.isDetailsActive = true;
             return;
         }
         if (api.keys.isFilters(event)) {
@@ -150,7 +150,10 @@ FocusScope {
 
         originalModel: topbar.currentCollection.games
         filteredModel: filteredGames
-        onDetailsRequested: gamepreview.focus = true
+        onDetailsRequested: {
+            gamesupport.isDetailsActive = true
+            gamepreview.focus = true
+        }
         onLaunchRequested: launchGame()
     }
 
@@ -166,8 +169,14 @@ FocusScope {
         }
 
         game: gamegrid.currentGame
-        onOpenRequested: gamepreview.focus = true
-        onCloseRequested: gamegrid.focus = true
+        onOpenRequested: {
+            gamesupport.isDetailsActive = true
+            gamepreview.focus = true
+        }
+        onCloseRequested: {
+            gamesupport.isDetailsActive = false
+            gamegrid.focus = true
+        }
         onFiltersRequested: filter.focus = true
         onLaunchRequested: launchGame()
     }
@@ -181,6 +190,7 @@ FocusScope {
         }
 
         game: gamegrid.currentGame
+        isDetailsActive: false
     }
 
     GuideBar {
