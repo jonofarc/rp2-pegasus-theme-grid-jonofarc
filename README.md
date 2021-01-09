@@ -10,6 +10,7 @@ just [download](https://github.com/DFOXpro/rp2-pegasus-theme-grid/archive/master
 * Customizable theme
 * Various colours to fit your rp2
 * Favorites/All apps/Last plated lists to enable
+* Android apps toggleable on the fly (if settings > sources > Adroid apps is enable)
 * Game video can be play/paused with select and set in autoplay mode
 * Support skrapper generic "support"(aka cartridge and disk) and "screen-title" images
   * (20/10/09 New) Option to hide support image available

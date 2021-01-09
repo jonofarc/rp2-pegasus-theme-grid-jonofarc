@@ -52,7 +52,11 @@ FocusScope {
         if(api.memory.get(CONSTANTS.ENABLE_FAVORITES)) collections.unshift({"name": "Favorites", "shortName": "favs", "games": allFavorites})
         if(api.memory.get(CONSTANTS.ENABLE_LAST_OPEN)) collections.unshift({"name": "Last Played", "shortName": "last", "games": filterLastPlayed})
         if(api.memory.get(CONSTANTS.ENABLE_LIST_ALL)) collections.unshift({"name": "All Games", "shortName": "all", "games": api.allGames})
-        if(!api.memory.get(CONSTANTS.ENABLE_ANDROID)) collections.splice(collections.findIndex(c => c.shortName === "android"),1)
+        let indexOfAndroidApps = collections.findIndex(c => c.shortName === "android")
+        if(
+            !api.memory.get(CONSTANTS.ENABLE_ANDROID) &&
+            indexOfAndroidApps >= 0
+        ) collections.splice(indexOfAndroidApps, 1)
         // @See GameGrid originalModel
 
         return collections
