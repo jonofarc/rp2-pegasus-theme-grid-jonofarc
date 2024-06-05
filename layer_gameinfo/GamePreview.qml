@@ -55,10 +55,11 @@ FocusScope {
 
     Rectangle {
         id: panelRect
-        color: "#88111111"
+        color: "#BB111111"
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.left
+
         // opacity: 0.50
 
         PegasusUtils.HorizontalSwipeArea {
@@ -99,7 +100,7 @@ FocusScope {
                 top: parent.top; topMargin: vpx(40)
                 bottom: parent.bottom; bottomMargin: vpx(8)
             }
-
+            expand : root.renderLeftside
             game: root.game
         }
     }

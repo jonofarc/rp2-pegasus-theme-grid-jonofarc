@@ -8,15 +8,16 @@ Rectangle {
     property bool isDetailsActive
     // color: '#cc00cc00'
     color: '#00000000'
-    width: parent.width * 0.34 - 1
+    width: parent.width * 0.34 - 1 
     height: supportimg.height + (supportimg.source != '' ? 20 : 0)
     opacity: api.memory.get(CONSTANTS.HIDE_SUPPORT) ? 0 : 1
 
     Image {
+        
         id: boximg
         opacity: 0
-        width: parent.width - 20
-        height:  parent.parent.height - 57 - supportimg.height
+        width: parent.width
+        height:  parent.parent.height * 0.3
         anchors {
             right: parent.right
             top: parent.top
@@ -58,12 +59,13 @@ Rectangle {
             PropertyChanges {
                 target: supportContainer
                 height: parent.height - 27
-                color: "#88111111"
+                color: "#BB111111"
                 opacity: 1
             }
             PropertyChanges {
                 target: boximg
                 opacity: 1
+                
             }
         }
     ]

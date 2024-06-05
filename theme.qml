@@ -161,6 +161,18 @@ FocusScope {
         onLaunchRequested: launchGame()
     }
 
+    
+    GameSupport {
+        id: gamesupport
+
+        anchors {
+            right: parent.right
+            bottom: bottombar.top
+        }
+
+        game: gamegrid.currentGame
+        isDetailsActive: false
+    }
     GamePreview {
         id: gamepreview
 
@@ -185,17 +197,6 @@ FocusScope {
         onLaunchRequested: launchGame()
     }
 
-    GameSupport {
-        id: gamesupport
-
-        anchors {
-            right: parent.right
-            bottom: bottombar.top
-        }
-
-        game: gamegrid.currentGame
-        isDetailsActive: false
-    }
 
     GuideBar {
         id: bottombar
@@ -222,7 +223,7 @@ FocusScope {
     ButtonHint {
         hint: 'Hide help'
         icon: 'input_STCK-L'
-        backgroundcolour: "#88111111"
+        backgroundcolour: "#BB111111"
         anchors {
             left: parent.left
             bottom: parent.bottom

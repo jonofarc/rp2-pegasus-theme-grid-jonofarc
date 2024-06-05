@@ -183,7 +183,7 @@ FocusScope {
             id: l2
             hint: 'ZL Pg up'
             icon: '5'
-            backgroundcolour: "#88111111"
+            backgroundcolour: "#BB111111"
             anchors {
                 top: parent.top
                 left: parent.left
@@ -194,7 +194,7 @@ FocusScope {
             id: dpad
             hint: 'Games in this collection'
             icon: 'input_DPAD'
-            backgroundcolour: "#88111111"
+            backgroundcolour: "#BB111111"
             anchors {
                 top: parent.top
                 right: parent.right
@@ -204,7 +204,7 @@ FocusScope {
             id: r2
             hint: 'ZR Pg down'
             icon: '8'
-            backgroundcolour: "#88111111"
+            backgroundcolour: "#BB111111"
             anchors {
                 bottom: parent.bottom
                 bottomMargin: 34

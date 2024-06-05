@@ -22,6 +22,8 @@ import "../layer_guide"
 
 Item {
     property var game
+    property var expand
+
 
     onGameChanged: {
         videoPreview.state = "";
@@ -180,6 +182,7 @@ Item {
         }
     }
 
+    //Jonathan video properties
     Rectangle {
         id: videoBox
         color: "#000"
@@ -187,10 +190,24 @@ Item {
 
         // anchors.top: summary.bottom
         anchors.bottom: parent.bottom
-
-        width: parent.width
-        height: parent.width*0.75
-
+            
+        //width: parent.width
+        //height: parent.width*0.75
+        width: {
+                if (expand){
+                    parent.width*2.1
+                }else{
+                    parent.width
+                }
+        }
+        height: {
+                if (expand){
+                    return parent.width*1.5
+                }else{
+                    parent.width*0.75
+                }
+            }
+         
         radius: vpx(4)
 
         visible: (game && (game.assets.videos.length || game.assets.screenshots.length)) || false
@@ -201,7 +218,7 @@ Item {
             anchors { fill: parent; margins: 1 }
             fillMode: Image.PreserveAspectFit
 
-            source: (game && game.assets.screenshot && game.assets.screenshot.replace('/media/screenshot', '/media/screenshottitle/')) || ""
+            source: (game && game.assets.screenshot && game.assets.screenshot.replace('/media/screenshot2', '/media/screenshottitle/')) || ""
             sourceSize { width: 512; height: 512 }
             asynchronous: true
         }

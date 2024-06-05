@@ -81,7 +81,7 @@ Rectangle {
         id: l1
         hint: 'L Previous collection'
         icon: '4'
-        backgroundcolour: "#88111111"
+        backgroundcolour: "#BB111111"
         // colour: CONFIGS.getForegroundColour(api)
         anchors {
             left: parent.left
@@ -92,7 +92,7 @@ Rectangle {
         id: r1
         hint: 'R Next collection'
         icon: '7'
-        backgroundcolour: "#88111111"
+        backgroundcolour: "#BB111111"
         // colour: CONFIGS.getForegroundColour(api)
         anchors {
             right: parent.right

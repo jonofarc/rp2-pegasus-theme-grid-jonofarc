@@ -17,7 +17,7 @@ Rectangle {
     function toggleHelp() {
         Globals.guideHintsAreVisible = !Globals.guideHintsAreVisible
     }
-    color: "#88111111"
+    color: "#BB111111"
     height: 34
 
     ButtonHint {
